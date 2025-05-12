@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container results">
+    <h1>Your Heart Health Assessment</h1>
+    
+    <div class="risk-level">
+        <div class="risk-card {% if probability > 70 %}high{% elif probability > 40 %}moderate{% else %}low{% endif %}">
+            <h2>Your Risk: {{ probability }}%</h2>
+            <p>
+                {% if probability > 70 %}
+                    High risk detected
+                {% elif probability > 40 %}
+                    Moderate risk detected
+                {% else %}
+                    Low risk detected
+                {% endif %}
+            </p>
+        </div>
+    </div>
+    
+    <div class="recommendations">
+        <h2>Personalized Recommendations</h2>
+        
+        <div class="recommendation-card">
+            <h3>General Advice</h3>
+            <p>{{ recommendations.general }}</p>
+        </div>
+        
+        <div class="recommendation-card">
+            <h3>Exercise</h3>
+            <p>{{ recommendations.exercise }}</p>
+        </div>
+        
+        <div class="recommendation-card">
+            <h3>Diet</h3>
+            <p>{{ recommendations.diet }}</p>
+        </div>
+        
+        <div class="recommendation-card">
+            <h3>Stress Management</h3>
+            <p>{{ recommendations.stress }}</p>
+        </div>
+    </div>
+    
+    {% if share_options.doctor or share_options.family %}
+    <div class="sharing-options">
+        <h2>Sharing Options</h2>
+        <p>
+            {% if share_options.doctor %}
+            <span class="share-badge">Shared with doctor</span>
+            {% endif %}
+            {% if share_options.family %}
+            <span class="share-badge">Shared with family</span>
+            {% endif %}
+        </p>
+        <p>We'll prepare a summary report for you to share.</p>
+    </div>
+    {% endif %}
+    
+    <div class="actions">
+        <a href="{{ url_for('index') }}" class="btn">Start New Assessment</a>
+        <button class="btn secondary" id="print-btn">Print Results</button>
+    </div>
+</div>
+{% endblock %}

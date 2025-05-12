@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Heart Disease Risk Assessment</h1>
+    <p class="subtitle">Evaluate your risk based on lifestyle factors and get personalized recommendations</p>
+    
+    <div class="form-container">
+        <form method="POST" action="{{ url_for('index') }}">
+            {{ form.hidden_tag() }}
+            
+            <div class="form-section">
+                <h2>Basic Health Information</h2>
+                <div class="form-group">
+                    {{ form.age.label }}
+                    {{ form.age(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.sex.label }}
+                    {{ form.sex(class="form-control") }}
+                </div>
+                <!-- Add other basic health fields similarly -->
+            </div>
+            
+            <div class="form-section">
+                <h2>Lifestyle Factors</h2>
+                <div class="form-group">
+                    {{ form.exercise.label }}
+                    {{ form.exercise(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.diet.label }}
+                    {{ form.diet(class="form-control") }}
+                </div>
+                <!-- Add other lifestyle fields similarly -->
+            </div>
+            
+            <div class="form-section">
+                <h2>Sharing Options</h2>
+                <div class="form-group checkbox">
+                    {{ form.share_with_doctor() }}
+                    {{ form.share_with_doctor.label }}
+                </div>
+                <div class="form-group checkbox">
+                    {{ form.share_with_family() }}
+                    {{ form.share_with_family.label }}
+                </div>
+            </div>
+            
+            <button type="submit" class="btn-submit">Assess My Risk</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
