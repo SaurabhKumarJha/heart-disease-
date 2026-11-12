@@ -3,7 +3,7 @@ from flask_cors import CORS
 from wtforms import IntegerField, SelectField, BooleanField
 from wtforms.validators import DataRequired, NumberRange
 import joblib
-import numpy as np
+import numpy as nb
 from forms import HeartDiseaseForm
 from wtforms.validators import DataRequired, NumberRange
 from flask_wtf import FlaskForm
